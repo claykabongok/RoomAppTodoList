@@ -4,18 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginLeft="8dp"
     android:layout_marginTop="8dp"
+
+    android:layout_marginRight="8dp"
     android:layout_marginBottom="16dp"
 
-    app:cardElevation="4dp"
     android:elevation="5dp"
-
     app:cardCornerRadius="7dp"
-    android:layout_marginLeft="8dp"
-    android:layout_marginRight="8dp">
+    app:cardElevation="4dp">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/tv_todo_item_id"
@@ -37,10 +38,9 @@
             tools:text="1" />
 
         <TextView
-            android:id="@+id/tv_todo_item_description"
+            android:id="@+id/tv_todo_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
@@ -51,23 +51,39 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tv_todo_item_id"
             app:layout_constraintTop_toTopOf="parent"
+            tools:text="Title" />
+
+        <TextView
+            android:id="@+id/tv_todo_item_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+
+            android:fontFamily="sans-serif-medium"
+
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_todo_item_id"
+            app:layout_constraintTop_toBottomOf="@+id/tv_todo_title"
             tools:text="Buy bread" />
 
         <TextView
             android:id="@+id/tv_todo_item_date"
             android:layout_width="0dp"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+
             android:layout_marginEnd="8dp"
             android:fontFamily="sans-serif"
             android:textAppearance="?android:textAppearanceSmall"
-            android:textColor="@color/colorTodoItemDate"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tv_todo_item_id"
             app:layout_constraintTop_toBottomOf="@+id/tv_todo_item_description"
             tools:text="Tomorrow" />
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

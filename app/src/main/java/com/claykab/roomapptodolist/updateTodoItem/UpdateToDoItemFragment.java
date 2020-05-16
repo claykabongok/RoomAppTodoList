@@ -113,7 +113,7 @@ public class UpdateToDoItemFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //Navigate to list
-                Navigation.findNavController(v).navigate(R.id.action_NewItemFragment_to_ListFragment);
+                Navigation.findNavController(v).navigate(R.id.action_updateToDoItemFragment_to_ListFragment);
             }
         });
         //save item to list
@@ -146,7 +146,7 @@ public class UpdateToDoItemFragment extends Fragment {
                         String todoUpdateTitle=binding.etUpdateTodoItemTitle.getEditText().getText().toString().trim();
                         String todoUpdateDescription=binding.etUpdateTodoItemDescription.getEditText().getText().toString().trim();
                         String todoDate=binding.etUpdateTodoItemDate.getEditText().getText().toString().trim();
-//                        Todo newTodo= new Todo(todoUpdateTitle,todoUpdateTitle,todoUpdateDescription,todoDate);
+
                         Todo updateTodoItem = new Todo(itemIdUpdate, todoUpdateTitle, todoUpdateDescription, todoDate);
 
                         try {

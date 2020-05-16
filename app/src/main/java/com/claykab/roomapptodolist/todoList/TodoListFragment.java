@@ -20,13 +20,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.claykab.roomapptodolist.R;
 import com.claykab.roomapptodolist.TodoAdapter;
+import com.claykab.roomapptodolist.databinding.FragmentTodoListBinding;
 import com.claykab.roomapptodolist.persistence.Todo;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 
 public class TodoListFragment extends Fragment {
-    private com.claykab.roomapptodolist.databinding.FragmentTodoListBinding binding;
+    private FragmentTodoListBinding binding;
     private TodoAdapter todoAdapter;
     private TodoListViewModel todoListViewModel;
 

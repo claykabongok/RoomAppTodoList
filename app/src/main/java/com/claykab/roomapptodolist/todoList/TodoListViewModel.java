@@ -30,13 +30,7 @@ public class TodoListViewModel  extends AndroidViewModel {
         return todolist=todoRepository.getTodoList();
     }
 
-    /**
-     * add item to the list
-     * @param todo
-     */
-    public void AddItemToList(Todo todo){
-        todoRepository.AddTodoItem(todo);
-    }
+
 
     /**
      * delete item

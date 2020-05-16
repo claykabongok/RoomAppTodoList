@@ -71,7 +71,7 @@
         android:layout_height="wrap_content"
         android:clickable="true"
 
-        android:src="@drawable/ic_playlist_add_black_24dp"
+        android:src="@drawable/ic_playlist_add_white_24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.954"

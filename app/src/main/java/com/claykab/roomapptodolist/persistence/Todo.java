@@ -17,12 +17,21 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "todo")
 public class Todo {
     @NonNull
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "todo_id")
-    private long todo_id;
+    private long todo_item_id;
 
     @ColumnInfo(name ="todo_title")
     private String todoTitle;
+
+    public long getTodo_item_id() {
+        return todo_item_id;
+    }
+
+
+    public void setTodo_item_id(long todo_item_id) {
+        this.todo_item_id = todo_item_id;
+    }
 
 
     @ColumnInfo(name ="todo_description")
@@ -31,21 +40,14 @@ public class Todo {
     @ColumnInfo(name ="todo_date")
     private String todoDate;
 
-    public Todo(long todo_id, String todoTitle, String todoDescription, String todoDate) {
-        this.todo_id = todo_id;
+    public Todo( String todoTitle, String todoDescription, String todoDate) {
+
         this.todoTitle = todoTitle;
         this.todoDescription = todoDescription;
         this.todoDate = todoDate;
     }
 
-    public long getTodo_id() {
-        return todo_id;
-    }
 
-    public Todo setTodo_id(long todo_id) {
-        this.todo_id = todo_id;
-        return this;
-    }
 
     public String getTodoTitle() {
         return todoTitle;

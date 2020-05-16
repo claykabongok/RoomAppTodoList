@@ -69,7 +69,7 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
      @Override
      public void onBindViewHolder(@NonNull TodoViewHolder todoViewHolder, int position) {
           Todo todo=todoList.get(position);
-          todoViewHolder.tv_itemId.setText(String.valueOf(todo.getTodo_id()));
+          todoViewHolder.tv_itemId.setText(String.valueOf(todo.getTodo_item_id()));
           todoViewHolder.tv_item_title.setText(todo.getTodoTitle());
           todoViewHolder.tv_item_description.setText(todo.getTodoDescription());
           todoViewHolder.tv_item_date.setText(todo.getTodoDate());
@@ -108,7 +108,7 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
             public void onClick(View v) {
                  Todo todo=todoList.get(getAdapterPosition());
                  Bundle bundle= new Bundle();
-                 long  itemId=todo.getTodo_id();
+                 long  itemId=todo.getTodo_item_id();
                  bundle.putLong("itemId", itemId);
                  //todo navigate to details view
                  //Navigation.findNavController(v).

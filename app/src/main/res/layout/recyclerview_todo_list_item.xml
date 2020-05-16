@@ -47,7 +47,7 @@
 
             android:fontFamily="sans-serif-medium"
             android:textAppearance="?android:textAppearanceMedium"
-            android:textColor=""
+            android:textColor="@color/colorTodoItemDescription"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tv_todo_item_id"
             app:layout_constraintTop_toTopOf="parent"

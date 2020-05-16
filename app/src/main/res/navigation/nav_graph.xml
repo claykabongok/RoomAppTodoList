@@ -3,26 +3,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/ListFragment">
 
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.claykab.roomapptodolist.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
+        android:id="@+id/ListFragment"
+        android:name="com.claykab.roomapptodolist.todoList.TodoListFragment"
+        android:label="@string/todo_list_item_fragment_label"
+        tools:layout="@layout/fragment_todo_list">
+
 
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            android:id="@+id/action_ListFragment_to_NewItemFragment"
+            app:destination="@id/NewItemFragment" />
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.claykab.roomapptodolist.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
+        android:id="@+id/NewItemFragment"
+        android:name="com.claykab.roomapptodolist.newTodoItem.NewTodoItemFragment"
+        android:label="@string/todo_add_new_fragment_label"
+        tools:layout="@layout/fragment_new_todo_item">
+
 
         <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            android:id="@+id/action_NewItemFragment_to_ListFragment"
+            app:destination="@id/ListFragment" />
     </fragment>
 </navigation>

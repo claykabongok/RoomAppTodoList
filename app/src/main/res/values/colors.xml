@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<!--    <color name="colorPrimary">#6200EE</color>-->
+<!--    <color name="colorPrimaryDark">#3700B3</color>-->
+<!--    <color name="colorAccent">#03DAC5</color>-->
+
+    <color name="colorPrimary">#741d52</color>
+    <color name="colorPrimaryDark">#450029</color>
+    <color name="colorPrimaryLight">#a54c7e</color>
+    <color name="colorAccent">#a54c7e</color>
+    <color name="colorWhiteSmoke">#f5f5f5</color>
+    <color name="colorItemBackground">#B4BAC0</color>
+    <color name="colorTodoItemDescription">#2B3D4D</color>
+    <color name="colorTodoItemDate">#AEB6BD</color>
+</resources>

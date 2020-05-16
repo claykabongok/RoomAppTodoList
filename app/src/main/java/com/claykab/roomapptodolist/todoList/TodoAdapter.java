@@ -1,4 +1,4 @@
-package com.claykab.roomapptodolist;
+package com.claykab.roomapptodolist.todoList;
 
 
 import android.content.Context;
@@ -8,11 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.claykab.roomapptodolist.R;
 import com.claykab.roomapptodolist.persistence.Todo;
 
 import java.util.List;
@@ -69,7 +71,7 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
      @Override
      public void onBindViewHolder(@NonNull TodoViewHolder todoViewHolder, int position) {
           Todo todo=todoList.get(position);
-          todoViewHolder.tv_itemId.setText(String.valueOf(todo.getTodo_item_id()));
+          todoViewHolder.tv_itemId.setText(String.valueOf(position+1));
           todoViewHolder.tv_item_title.setText(todo.getTodoTitle());
           todoViewHolder.tv_item_description.setText(todo.getTodoDescription());
           todoViewHolder.tv_item_date.setText(todo.getTodoDate());
@@ -92,6 +94,8 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
             TextView tv_itemId, tv_item_title, tv_item_description, tv_item_date;
             public TodoViewHolder(@NonNull View itemView) {
                  super(itemView);
+
+                 itemView.setOnClickListener(this);
                  tv_itemId=itemView.findViewById(R.id.tv_todo_item_id);
                  tv_item_title=itemView.findViewById(R.id.tv_todo_title);
                  tv_item_description=itemView.findViewById(R.id.tv_todo_item_description);
@@ -110,8 +114,9 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
                  Bundle bundle= new Bundle();
                  long  itemId=todo.getTodo_item_id();
                  bundle.putLong("itemId", itemId);
-                 //todo navigate to details view
-                 //Navigation.findNavController(v).
+                 //navigate to details view
+
+                 Navigation.findNavController(v).navigate(R.id.action_ListFragment_to_updateToDoItemFragment, bundle);
 
 
             }

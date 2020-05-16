@@ -28,6 +28,11 @@ public class TodoRepository {
         return todoDao.getTodoList();
     }
 
+
+    public LiveData<Todo>  getTodoItem(long todoItem){
+        return todoDao.getTodoItemById(todoItem);
+    }
+
     /**
      * add item
       * @param todo

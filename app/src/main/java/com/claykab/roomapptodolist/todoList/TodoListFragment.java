@@ -5,6 +5,9 @@ package com.claykab.roomapptodolist.todoList;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -19,7 +22,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.claykab.roomapptodolist.R;
-import com.claykab.roomapptodolist.TodoAdapter;
 import com.claykab.roomapptodolist.databinding.FragmentTodoListBinding;
 import com.claykab.roomapptodolist.persistence.Todo;
 import com.google.android.material.snackbar.Snackbar;
@@ -41,6 +43,7 @@ public class TodoListFragment extends Fragment {
         binding= com.claykab.roomapptodolist.databinding.FragmentTodoListBinding.inflate(inflater, container, false);
         try {
             getActivity().setTitle("Todo list");
+            setHasOptionsMenu(true);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -156,4 +159,97 @@ public class TodoListFragment extends Fragment {
     }
 
 
+    /**
+     * Initialize the contents of the Fragment host's standard options menu.  You
+     * should place your menu items in to <var>menu</var>.  For this method
+     * to be called, you must have first called {@link #setHasOptionsMenu}.  See
+     * onCreateOptionsMenu(Menu) Activity.onCreateOptionsMenu}
+     * for more information.
+     *
+     * @param menu     The options menu in which you place your items.
+     * @param inflater
+     * @see #setHasOptionsMenu
+     * @see #onPrepareOptionsMenu
+     * @see #onOptionsItemSelected
+     */
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater=getActivity().getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    /**
+     * This hook is called whenever an item in your options menu is selected.
+     * The default implementation simply returns false to have the normal
+     * processing happen (calling the item's Runnable or sending a message to
+     * its Handler as appropriate).  You can use this method for any items
+     * for which you would like to do processing without those other
+     * facilities.
+     *
+     * <p>Derived classes should call through to the base class for it to
+     * perform the default menu handling.
+     *
+     * @param item The menu item that was selected.
+     * @return boolean Return false to allow normal menu processing to
+     * proceed, true to consume it here.
+     * @see #onCreateOptionsMenu
+     */
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId()){
+            case R.id.action_clearList:
+
+                DeleteAllItem();
+                return true;
+            default:
+                return  super.onOptionsItemSelected(item);
+        }
+
+
+    }
+
+    private void DeleteAllItem() {
+        AlertDialog.Builder builder= new AlertDialog.Builder(getContext());
+        builder.setTitle("Delete All Records");
+        builder.setMessage("Are you sure you want to delete All item ?");
+        builder.setCancelable(false);
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                try {
+                    todoListViewModel.DeleteAllItem();
+
+
+                    binding.recyclerviewTodoList.setVisibility(View.GONE);
+
+                    loadTodoItem();
+                    Snackbar.make(getActivity().findViewById(R.id.nav_host_fragment),"Item added to the  list.",Snackbar.LENGTH_LONG)
+                            .show();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+
+
+
+
+
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+
+
+
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
 }

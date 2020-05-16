@@ -6,6 +6,7 @@ package com.claykab.roomapptodolist.persistence;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 /**
@@ -48,31 +49,39 @@ public class Todo {
     }
 
 
+    @Ignore
+    public Todo(long todo_item_id, String todoTitle, String todoDescription, String todoDate) {
+        this.todo_item_id = todo_item_id;
+        this.todoTitle = todoTitle;
+        this.todoDescription = todoDescription;
+        this.todoDate = todoDate;
+    }
 
     public String getTodoTitle() {
         return todoTitle;
     }
 
-    public Todo setTodoTitle(String todoTitle) {
+
+    public void setTodoTitle(String todoTitle) {
         this.todoTitle = todoTitle;
-        return this;
+
     }
 
     public String getTodoDescription() {
         return todoDescription;
     }
 
-    public Todo setTodoDescription(String todoDescription) {
+    public void setTodoDescription(String todoDescription) {
         this.todoDescription = todoDescription;
-        return this;
+
     }
 
     public String getTodoDate() {
         return todoDate;
     }
 
-    public Todo setTodoDate(String todoDate) {
+    public void setTodoDate(String todoDate) {
         this.todoDate = todoDate;
-        return this;
+
     }
 }

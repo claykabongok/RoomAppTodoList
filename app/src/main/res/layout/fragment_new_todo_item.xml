@@ -110,42 +110,7 @@
             />
 
     </com.google.android.material.textfield.TextInputLayout>
-<!--    <com.google.android.material.textfield.TextInputLayout-->
-<!--        android:id="@+id/et_todo_list_date"-->
-<!--        android:layout_width="295dp"-->
-<!--        android:layout_height="305dp"-->
-<!--     -->
-<!--       >-->
 
-<!--        <EditText-->
-
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:ems="10"-->
-
-<!--            android:focusable="false"-->
-<!--            android:hint="Date"-->
-<!--            android:inputType="none"-->
-<!--            android:maxLines="1"-->
-<!--            android:singleLine="true"-->
-<!--            android:textColorHint="@color/colorAccent" />-->
-
-<!--    </com.google.android.material.textfield.TextInputLayout>-->
-
-    <!--            app:layout_constraintTop_toBottomOf="@+id/et_lastPeriodDate"-->
-
-<!--    <androidx.appcompat.widget.AppCompatImageButton-->
-<!--        android:id="@+id/btn_set_date_of_birth"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginEnd="8dp"-->
-<!--        android:layout_marginRight="8dp"-->
-<!--        android:layout_marginBottom="32dp"-->
-<!--        android:layout_weight="1"-->
-<!--        android:background="@android:color/transparent"-->
-
-<!--     -->
-<!--        app:srcCompat="@drawable/ic_date_range_theme_color_24dp" />-->
 
 
     <ImageButton

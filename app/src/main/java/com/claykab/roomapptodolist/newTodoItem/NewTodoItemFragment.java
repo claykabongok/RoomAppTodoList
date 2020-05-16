@@ -6,6 +6,8 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
@@ -41,7 +43,7 @@ public class NewTodoItemFragment extends Fragment {
 
         //view binding
         binding= FragmentNewTodoItemBinding.inflate(inflater, container, false);
-        getActivity().setTitle("Todo list");
+
         viewModelNewItem= ViewModelProviders.of(this).get(ViewModelNewItem.class);
         return binding.getRoot();
     }
@@ -77,7 +79,7 @@ public class NewTodoItemFragment extends Fragment {
 
 
                 AlertDialog.Builder builder= new AlertDialog.Builder(getContext());
-                builder.setTitle("Delete Records");
+                builder.setTitle("Add new item ");
                 builder.setMessage("Are you sure you want to add this to your list ?");
                 builder.setCancelable(false);
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
@@ -204,4 +206,6 @@ public class NewTodoItemFragment extends Fragment {
         super.onDestroyView();
         binding=null;
     }
+
+
 }

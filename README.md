@@ -24,3 +24,34 @@ The application allow users to perform the following operation: Insert, Update, 
 
 ##  Application Demo:
 
+### Empty List
+
+<img src="https://github.com/claykabongok/RoomAppTodoList/blob/master/Readme/empty_list.jpg?raw=true" width=400 alt="Demo screen">
+
+
+### Add new Item:
+
+<img src="https://github.com/claykabongok/RoomAppTodoList/blob/master/Readme/addnew.jpg?raw=true" width=400 alt="Demo screen">
+<img src="https://github.com/claykabongok/RoomAppTodoList/blob/master/Readme/addnewdate.jpg?raw=true" width=400 alt="Demo screen">
+<img src="https://github.com/claykabongok/RoomAppTodoList/blob/master/Readme/addnewdialog.jpg?raw=true" width=400 alt="Demo screen">
+
+
+### Update Item
+
+<img src="https://github.com/claykabongok/RoomAppTodoList/blob/master/Readme/todolist.jpg?raw=true" width=400 alt="Demo screen">
+
+<img src="https://github.com/claykabongok/RoomAppTodoList/blob/master/Readme/updateItem.jpg?raw=true" width=400 alt="Demo screen">
+
+<img src="https://github.com/claykabongok/RoomAppTodoList/blob/master/Readme/confirmUpdate.jpg?raw=true" width=400 alt="Demo screen">
+
+
+
+### Swipe to delete
+<img src="https://github.com/claykabongok/RoomAppTodoList/blob/master/Readme/todolist.jpg?raw=true" width=400 alt="Demo screen">
+
+<img src="https://github.com/claykabongok/RoomAppTodoList/blob/master/Readme/swipetodelete.jpg?raw=true" width=400 alt="Demo screen">
+<img src="https://github.com/claykabongok/RoomAppTodoList/blob/master/Readme/delete.jpg?raw=true" width=400 alt="Demo screen">
+
+
+
+

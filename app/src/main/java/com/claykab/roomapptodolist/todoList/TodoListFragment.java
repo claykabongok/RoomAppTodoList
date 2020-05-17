@@ -57,13 +57,7 @@ public class TodoListFragment extends Fragment {
             }
         });
 
-        /**
-         *    binding.recyclerViewListCountries.setHasFixedSize(true);
-         *         binding.recyclerViewListCountries.setLayoutManager(new LinearLayoutManager(getContext()));
-         *         setHasOptionsMenu(true);
-         *         loadDataUsingViewModel();
-         *         SwipeDeleteMyFavoriteCountry();
-         */
+
         binding.recyclerviewTodoList.setHasFixedSize(true);
         binding.recyclerviewTodoList.setLayoutManager(new LinearLayoutManager(getContext()));
         
@@ -118,9 +112,10 @@ public class TodoListFragment extends Fragment {
                               public void onClick(DialogInterface dialog, int which) {
 
                                   todoListViewModel.deleteItemFromList(todoAdapter.getTodoItemPosition(viewHolder.getAdapterPosition()));
-
+                                  todoAdapter.notifyDataSetChanged();
                                   Snackbar.make(getActivity().findViewById(R.id.nav_host_fragment),"Item removed from todo list.",Snackbar.LENGTH_LONG)
                                                                .show();
+
                               }
                           });
                           builder.setNegativeButton("No", new DialogInterface.OnClickListener() {

@@ -13,7 +13,7 @@ import java.util.List;
 
 
 public class ViewModelNewItem extends AndroidViewModel {
-    private LiveData<List<Todo>> todolist;
+
     private TodoRepository todoRepository;
     public ViewModelNewItem(@NonNull Application application) {
         super(application);

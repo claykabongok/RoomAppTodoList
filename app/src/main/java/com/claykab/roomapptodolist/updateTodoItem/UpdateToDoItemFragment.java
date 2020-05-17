@@ -127,7 +127,7 @@ public class UpdateToDoItemFragment extends Fragment {
 
                 AlertDialog.Builder builder= new AlertDialog.Builder(getContext());
                 builder.setTitle("Update item ");
-                builder.setMessage("Are you sure you want to update your list your list ?");
+                builder.setMessage("Are you sure you want to update your list  ?");
                 builder.setCancelable(false);
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override

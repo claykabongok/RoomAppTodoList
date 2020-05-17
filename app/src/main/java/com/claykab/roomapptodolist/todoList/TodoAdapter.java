@@ -122,10 +122,7 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
             }
        }
 
-     public void todoList(List<Todo> todoList){
-          this.todoList=todoList;
-          notifyDataSetChanged();
-     }
+
 
      public Todo getTodoItemPosition(int position){
           return todoList.get(position);

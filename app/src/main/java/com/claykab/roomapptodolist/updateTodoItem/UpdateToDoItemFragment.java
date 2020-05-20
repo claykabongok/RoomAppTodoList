@@ -73,14 +73,11 @@ public class UpdateToDoItemFragment extends Fragment {
             e.printStackTrace();
         }
 
-        updateToDoItemViewModel.getTodoItem(itemId).observe(getViewLifecycleOwner(), new Observer<Todo>() {
-            @Override
-            public void onChanged(Todo todo) {
-                if(todo != null) {
-                    binding.etUpdateTodoItemTitle.getEditText().setText(todo.getTodoTitle());
-                    binding.etUpdateTodoItemDescription.getEditText().setText(todo.getTodoDescription());
-                    binding.etUpdateTodoItemDate.getEditText().setText(todo.getTodoDate());
-                }
+        updateToDoItemViewModel.getTodoItem(itemId).observe(getViewLifecycleOwner(), todo -> {
+            if(todo != null) {
+                binding.etUpdateTodoItemTitle.getEditText().setText(todo.getTodoTitle());
+                binding.etUpdateTodoItemDescription.getEditText().setText(todo.getTodoDescription());
+                binding.etUpdateTodoItemDate.getEditText().setText(todo.getTodoDate());
             }
         });
 
@@ -101,88 +98,71 @@ public class UpdateToDoItemFragment extends Fragment {
 
 
         //select date
-        binding.iBPickDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openSetTodoItemDate();
-            }
-        });
+        binding.iBPickDate.setOnClickListener(v -> openSetTodoItemDate());
 
         //cancel action
-        binding.btnCancelUpdate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Navigate to list
-                Navigation.findNavController(v).navigate(R.id.action_updateToDoItemFragment_to_ListFragment);
-            }
+        binding.btnCancelUpdate.setOnClickListener(v -> {
+            //Navigate to list
+            Navigation.findNavController(v).navigate(R.id.action_updateToDoItemFragment_to_ListFragment);
         });
         //save item to list
-        binding.btnUpdate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(!IsInputValid()){
-                    return;
+        binding.btnUpdate.setOnClickListener(v -> {
+            if(!IsInputValid()){
+                return;
+            }
+
+
+            AlertDialog.Builder builder= new AlertDialog.Builder(getContext());
+            builder.setTitle("Update item ");
+            builder.setMessage("Are you sure you want to update your list  ?");
+            builder.setCancelable(false);
+            builder.setPositiveButton("Yes", (dialog, which) -> {
+
+                long itemId=0;
+
+                try {
+                    itemId=getArguments().getLong("itemId");
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
 
 
-                AlertDialog.Builder builder= new AlertDialog.Builder(getContext());
-                builder.setTitle("Update item ");
-                builder.setMessage("Are you sure you want to update your list  ?");
-                builder.setCancelable(false);
-                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                long itemIdUpdate=itemId;
+                String todoUpdateTitle=binding.etUpdateTodoItemTitle.getEditText().getText().toString().trim();
+                String todoUpdateDescription=binding.etUpdateTodoItemDescription.getEditText().getText().toString().trim();
+                String todoDate=binding.etUpdateTodoItemDate.getEditText().getText().toString().trim();
 
-                        long itemId=0;
+                Todo updateTodoItem = new Todo(itemIdUpdate, todoUpdateTitle, todoUpdateDescription, todoDate);
 
-                        try {
-                            itemId=getArguments().getLong("itemId");
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
+                try {
+                    updateToDoItemViewModel.UpdateToDoItem(updateTodoItem);
 
-
-                        long itemIdUpdate=itemId;
-                        String todoUpdateTitle=binding.etUpdateTodoItemTitle.getEditText().getText().toString().trim();
-                        String todoUpdateDescription=binding.etUpdateTodoItemDescription.getEditText().getText().toString().trim();
-                        String todoDate=binding.etUpdateTodoItemDate.getEditText().getText().toString().trim();
-
-                        Todo updateTodoItem = new Todo(itemIdUpdate, todoUpdateTitle, todoUpdateDescription, todoDate);
-
-                        try {
-                            updateToDoItemViewModel.UpdateToDoItem(updateTodoItem);
-
-                            Snackbar.make(getActivity().findViewById(R.id.nav_host_fragment),"Item updated.",Snackbar.LENGTH_LONG)
-                                    .show();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
+                    Snackbar.make(getActivity().findViewById(R.id.nav_host_fragment),"Item updated.",Snackbar.LENGTH_LONG)
+                            .show();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
 
-                        NavHostFragment.findNavController(UpdateToDoItemFragment.this)
-                                .navigate(R.id.action_updateToDoItemFragment_to_ListFragment);
+                NavHostFragment.findNavController(UpdateToDoItemFragment.this)
+                        .navigate(R.id.action_updateToDoItemFragment_to_ListFragment);
 
 
 
-                    }
-                });
-                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                        NavHostFragment.findNavController(UpdateToDoItemFragment.this)
-                                .navigate(R.id.action_updateToDoItemFragment_to_ListFragment);
+            });
+            builder.setNegativeButton("No", (dialog, which) -> {
+                dialog.dismiss();
+                NavHostFragment.findNavController(UpdateToDoItemFragment.this)
+                        .navigate(R.id.action_updateToDoItemFragment_to_ListFragment);
 
 
-                    }
-                });
-                AlertDialog alertDialog = builder.create();
-                alertDialog.show();
+            });
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
 
 
 
 
-            }
         });
     }
     //date picker wih min date set to current date
@@ -199,17 +179,14 @@ public class UpdateToDoItemFragment extends Fragment {
         dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
 
         datePickerDialog = new DatePickerDialog(getActivity(),
-                new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                (datePicker, year1, month1, day) -> {
 
-                        String selectedDate= day+"-"+(month + 1)+"-"+year;
+                    String selectedDate= day+"-"+(month1 + 1)+"-"+ year1;
 
-                        binding.etUpdateTodoItemDate.getEditText().setText(selectedDate);
+                    binding.etUpdateTodoItemDate.getEditText().setText(selectedDate);
 
 
 
-                    }
                 }, year, month, dayOfMonth);
 
         datePickerDialog.getDatePicker().setMinDate(calendar.getTimeInMillis());

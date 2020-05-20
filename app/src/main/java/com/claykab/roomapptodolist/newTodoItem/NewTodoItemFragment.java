@@ -2,15 +2,11 @@ package com.claykab.roomapptodolist.newTodoItem;
 
 
 import android.app.DatePickerDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.DatePicker;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -54,74 +50,57 @@ public class NewTodoItemFragment extends Fragment {
 
 
         //select date
-        binding.iBPickDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openSetTodoItemDate();
-            }
-        });
+        binding.iBPickDate.setOnClickListener(v -> openSetTodoItemDate());
 
         //cancel action
-        binding.btnCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Navigate to list
-                Navigation.findNavController(v).navigate(R.id.action_NewItemFragment_to_ListFragment);
-            }
+        binding.btnCancel.setOnClickListener(v -> {
+            //Navigate to list
+            Navigation.findNavController(v).navigate(R.id.action_NewItemFragment_to_ListFragment);
         });
         //save item to list
-        binding.btnSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(!IsInputValid()){
-                    return;
+        binding.btnSave.setOnClickListener(v -> {
+            if(!IsInputValid()){
+                return;
+            }
+
+
+            AlertDialog.Builder builder= new AlertDialog.Builder(getContext());
+            builder.setTitle("Add new item ");
+            builder.setMessage("Are you sure you want to add this to your list ?");
+            builder.setCancelable(false);
+            builder.setPositiveButton("Yes", (dialog, which) -> {
+                String todoTitle=binding.etTodoItemTitle.getEditText().getText().toString().trim();
+                String todoDescription=binding.etTodoItemDescription.getEditText().getText().toString().trim();
+                String todoDate=binding.etTodoItemDate.getEditText().getText().toString().trim();
+                Todo newTodo= new Todo(todoTitle,todoDescription,todoDate);
+                try {
+                    viewModelNewItem.AddItemToList(newTodo);
+                    Snackbar.make(getActivity().findViewById(R.id.nav_host_fragment),"Item added to the  list.",Snackbar.LENGTH_LONG)
+                            .show();
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
 
 
-                AlertDialog.Builder builder= new AlertDialog.Builder(getContext());
-                builder.setTitle("Add new item ");
-                builder.setMessage("Are you sure you want to add this to your list ?");
-                builder.setCancelable(false);
-                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        String todoTitle=binding.etTodoItemTitle.getEditText().getText().toString().trim();
-                        String todoDescription=binding.etTodoItemDescription.getEditText().getText().toString().trim();
-                        String todoDate=binding.etTodoItemDate.getEditText().getText().toString().trim();
-                        Todo newTodo= new Todo(todoTitle,todoDescription,todoDate);
-                        try {
-                            viewModelNewItem.AddItemToList(newTodo);
-                            Snackbar.make(getActivity().findViewById(R.id.nav_host_fragment),"Item added to the  list.",Snackbar.LENGTH_LONG)
-                                    .show();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-
-
-                        NavHostFragment.findNavController(NewTodoItemFragment.this)
-                                .navigate(R.id.action_NewItemFragment_to_ListFragment);
+                NavHostFragment.findNavController(NewTodoItemFragment.this)
+                        .navigate(R.id.action_NewItemFragment_to_ListFragment);
 
 
 
-                    }
-                });
-                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                        NavHostFragment.findNavController(NewTodoItemFragment.this)
-                                .navigate(R.id.action_NewItemFragment_to_ListFragment);
+            });
+            builder.setNegativeButton("No", (dialog, which) -> {
+                dialog.dismiss();
+                NavHostFragment.findNavController(NewTodoItemFragment.this)
+                        .navigate(R.id.action_NewItemFragment_to_ListFragment);
 
 
-                    }
-                });
-                AlertDialog alertDialog = builder.create();
-                alertDialog.show();
+            });
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
 
 
 
 
-            }
         });
     }
 
@@ -140,17 +119,14 @@ public class NewTodoItemFragment extends Fragment {
         dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
 
         datePickerDialog = new DatePickerDialog(getActivity(),
-                new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                (datePicker, year1, month1, day) -> {
 
-                        String selectedDate= day+"-"+(month + 1)+"-"+year;
+                    String selectedDate= day+"-"+(month1 + 1)+"-"+ year1;
 
-                        binding.etTodoItemDate.getEditText().setText(selectedDate);
+                    binding.etTodoItemDate.getEditText().setText(selectedDate);
 
 
 
-                    }
                 }, year, month, dayOfMonth);
 
         datePickerDialog.getDatePicker().setMinDate(calendar.getTimeInMillis());

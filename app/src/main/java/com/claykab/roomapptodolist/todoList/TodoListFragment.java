@@ -50,12 +50,7 @@ public class TodoListFragment extends Fragment {
 
 
 
-        binding.fabAddNewItem.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.action_ListFragment_to_NewItemFragment);
-            }
-        });
+        binding.fabAddNewItem.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.action_ListFragment_to_NewItemFragment));
 
 
         binding.recyclerviewTodoList.setHasFixedSize(true);
@@ -73,20 +68,17 @@ public class TodoListFragment extends Fragment {
 
     private void loadTodoItem() {
 
-        todoListViewModel.getTodolist().observe(getViewLifecycleOwner(), new Observer<List<Todo>>() {
-            @Override
-            public void onChanged(List<Todo> todoList) {
-                                if (!todoList.isEmpty()) {
-                    binding.progressBarTodoList.setVisibility(View.GONE);
-                    todoAdapter = new TodoAdapter(getContext(), todoList);
-                    binding.recyclerviewTodoList.setAdapter(todoAdapter);
-                } else {
-                    binding.progressBarTodoList.setVisibility(View.GONE);
-                    binding.tvMyTodoListEmpty.setVisibility(View.VISIBLE);
-                    binding.ivTodoListEmpty.setVisibility(View.VISIBLE);
-                }
-
+        todoListViewModel.getTodolist().observe(getViewLifecycleOwner(), todoList -> {
+                            if (!todoList.isEmpty()) {
+                binding.progressBarTodoList.setVisibility(View.GONE);
+                todoAdapter = new TodoAdapter(getContext(), todoList);
+                binding.recyclerviewTodoList.setAdapter(todoAdapter);
+            } else {
+                binding.progressBarTodoList.setVisibility(View.GONE);
+                binding.tvMyTodoListEmpty.setVisibility(View.VISIBLE);
+                binding.ivTodoListEmpty.setVisibility(View.VISIBLE);
             }
+
         });
 
     }
@@ -107,24 +99,18 @@ public class TodoListFragment extends Fragment {
                           builder.setTitle("Delete Records");
                           builder.setMessage("Are you sure you want to delete this?");
                           builder.setCancelable(false);
-                          builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                              @Override
-                              public void onClick(DialogInterface dialog, int which) {
+                          builder.setPositiveButton("Yes", (dialog, which) -> {
 
-                                  todoListViewModel.deleteItemFromList(todoAdapter.getTodoItemPosition(viewHolder.getAdapterPosition()));
-                                  todoAdapter.notifyDataSetChanged();
-                                  Snackbar.make(getActivity().findViewById(R.id.nav_host_fragment),"Item removed from todo list.",Snackbar.LENGTH_LONG)
-                                                               .show();
+                              todoListViewModel.deleteItemFromList(todoAdapter.getTodoItemPosition(viewHolder.getAdapterPosition()));
+                              todoAdapter.notifyDataSetChanged();
+                              Snackbar.make(getActivity().findViewById(R.id.nav_host_fragment),"Item removed from todo list.",Snackbar.LENGTH_LONG)
+                                                           .show();
 
-                              }
                           });
-                          builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                              @Override
-                              public void onClick(DialogInterface dialog, int which) {
-                                  dialog.dismiss();
+                          builder.setNegativeButton("No", (dialog, which) -> {
+                              dialog.dismiss();
 
-                                  todoAdapter.notifyDataSetChanged();
-                              }
+                              todoAdapter.notifyDataSetChanged();
                           });
                           AlertDialog alertDialog = builder.create();
                           alertDialog.show();
@@ -211,39 +197,28 @@ public class TodoListFragment extends Fragment {
         builder.setTitle("Delete All Records");
         builder.setMessage("Are you sure you want to delete All item ?");
         builder.setCancelable(false);
-        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
+        builder.setPositiveButton("Yes", (dialog, which) -> {
 
-                try {
-                    todoListViewModel.DeleteAllItem();
+            try {
+                todoListViewModel.DeleteAllItem();
 
 
-                    binding.recyclerviewTodoList.setVisibility(View.GONE);
+                binding.recyclerviewTodoList.setVisibility(View.GONE);
 
-                    loadTodoItem();
-                    Snackbar.make(getActivity().findViewById(R.id.nav_host_fragment),"Item added to the  list.",Snackbar.LENGTH_LONG)
-                            .show();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-
-
-
-
-
+                loadTodoItem();
+                Snackbar.make(getActivity().findViewById(R.id.nav_host_fragment),"Item added to the  list.",Snackbar.LENGTH_LONG)
+                        .show();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
+
+
+
+
+
+
         });
-        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-
-
-
-            }
-        });
+        builder.setNegativeButton("No", (dialog, which) -> dialog.dismiss());
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
     }

@@ -59,7 +59,7 @@ public interface TodoDao {
      * Return todoList
      * @return
      */
-  @Query("SELECT * FROM todo")
+  @Query("SELECT * FROM todo order by todo_date ASC")
     LiveData<List<Todo>> getTodoList();
 
 

@@ -27,7 +27,11 @@ import com.claykab.roomapptodolist.newTodoItem.ViewModelNewItem;
 import com.claykab.roomapptodolist.persistence.Todo;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 
 public class UpdateToDoItemFragment extends Fragment {
@@ -77,7 +81,7 @@ public class UpdateToDoItemFragment extends Fragment {
             if(todo != null) {
                 binding.etUpdateTodoItemTitle.getEditText().setText(todo.getTodoTitle());
                 binding.etUpdateTodoItemDescription.getEditText().setText(todo.getTodoDescription());
-                binding.etUpdateTodoItemDate.getEditText().setText(todo.getTodoDate());
+                binding.etUpdateTodoItemDate.getEditText().setText(String.valueOf(todo.getTodoDate()));
             }
         });
 
@@ -132,7 +136,19 @@ public class UpdateToDoItemFragment extends Fragment {
                 String todoUpdateDescription=binding.etUpdateTodoItemDescription.getEditText().getText().toString().trim();
                 String todoDate=binding.etUpdateTodoItemDate.getEditText().getText().toString().trim();
 
-                Todo updateTodoItem = new Todo(itemIdUpdate, todoUpdateTitle, todoUpdateDescription, todoDate);
+
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
+
+                Calendar calTodoDate= Calendar.getInstance();
+                try {
+                    calTodoDate.setTime(simpleDateFormat.parse(todoDate));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+
+                Date mtodoDate= new Date(todoDate);
+                Todo updateTodoItem = new Todo(itemIdUpdate, todoUpdateTitle, todoUpdateDescription, mtodoDate );
 
                 try {
                     updateToDoItemViewModel.UpdateToDoItem(updateTodoItem);

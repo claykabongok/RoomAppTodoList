@@ -20,7 +20,11 @@ import com.claykab.roomapptodolist.databinding.FragmentNewTodoItemBinding;
 import com.claykab.roomapptodolist.persistence.Todo;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 public class NewTodoItemFragment extends Fragment {
     private FragmentNewTodoItemBinding binding;
@@ -72,7 +76,18 @@ public class NewTodoItemFragment extends Fragment {
                 String todoTitle=binding.etTodoItemTitle.getEditText().getText().toString().trim();
                 String todoDescription=binding.etTodoItemDescription.getEditText().getText().toString().trim();
                 String todoDate=binding.etTodoItemDate.getEditText().getText().toString().trim();
-                Todo newTodo= new Todo(todoTitle,todoDescription,todoDate);
+
+
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
+                Date mTodoate= null;
+
+                try {
+                    mTodoate = simpleDateFormat.parse(todoDate);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                Todo newTodo= new Todo(todoTitle,todoDescription,mTodoate);
                 try {
                     viewModelNewItem.AddItemToList(newTodo);
                     Snackbar.make(getActivity().findViewById(R.id.nav_host_fragment),"Item added to the  list.",Snackbar.LENGTH_LONG)

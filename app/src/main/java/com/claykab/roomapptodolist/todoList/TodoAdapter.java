@@ -17,7 +17,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.claykab.roomapptodolist.R;
 import com.claykab.roomapptodolist.persistence.Todo;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
 
 public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder> {
      private Context context;
@@ -74,7 +76,8 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
           todoViewHolder.tv_itemId.setText(String.valueOf(position+1));
           todoViewHolder.tv_item_title.setText(todo.getTodoTitle());
           todoViewHolder.tv_item_description.setText(todo.getTodoDescription());
-          todoViewHolder.tv_item_date.setText(todo.getTodoDate());
+          SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy ", Locale.ENGLISH);
+          todoViewHolder.tv_item_date.setText(formatter.format(todo.getTodoDate()));
 
      }
 

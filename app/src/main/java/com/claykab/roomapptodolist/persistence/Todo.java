@@ -9,6 +9,8 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import java.util.Date;
+
 /**
  * Room allows you to return any Java-based object
  * from your queries as long as the set of result
@@ -39,9 +41,9 @@ public class Todo {
     private String todoDescription;
 
     @ColumnInfo(name ="todo_date")
-    private String todoDate;
+    private Date todoDate;
 
-    public Todo( String todoTitle, String todoDescription, String todoDate) {
+    public Todo( String todoTitle, String todoDescription, Date todoDate) {
 
         this.todoTitle = todoTitle;
         this.todoDescription = todoDescription;
@@ -50,7 +52,7 @@ public class Todo {
 
 
     @Ignore
-    public Todo(long todo_item_id, String todoTitle, String todoDescription, String todoDate) {
+    public Todo(long todo_item_id, String todoTitle, String todoDescription, Date todoDate) {
         this.todo_item_id = todo_item_id;
         this.todoTitle = todoTitle;
         this.todoDescription = todoDescription;
@@ -76,11 +78,11 @@ public class Todo {
 
     }
 
-    public String getTodoDate() {
+    public Date getTodoDate() {
         return todoDate;
     }
 
-    public void setTodoDate(String todoDate) {
+    public void setTodoDate(Date todoDate) {
         this.todoDate = todoDate;
 
     }

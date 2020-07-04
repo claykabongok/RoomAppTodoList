@@ -81,7 +81,12 @@ public class UpdateToDoItemFragment extends Fragment {
             if(todo != null) {
                 binding.etUpdateTodoItemTitle.getEditText().setText(todo.getTodoTitle());
                 binding.etUpdateTodoItemDescription.getEditText().setText(todo.getTodoDescription());
-                binding.etUpdateTodoItemDate.getEditText().setText(String.valueOf(todo.getTodoDate()));
+                SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy ", Locale.ENGLISH);
+                //todoViewHolder.tv_item_date.setText(formatter.format(todo.getTodoDate()));
+                binding.etUpdateTodoItemDate.getEditText().setText(formatter.format(todo.getTodoDate()));
+
+//
+//                binding.etUpdateTodoItemDate.getEditText().setText(String.valueOf(todo.getTodoDate()));
             }
         });
 
@@ -136,19 +141,20 @@ public class UpdateToDoItemFragment extends Fragment {
                 String todoUpdateDescription=binding.etUpdateTodoItemDescription.getEditText().getText().toString().trim();
                 String todoDate=binding.etUpdateTodoItemDate.getEditText().getText().toString().trim();
 
+                ///
+
 
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
+                Date mTodoate= null;
 
-                Calendar calTodoDate= Calendar.getInstance();
                 try {
-                    calTodoDate.setTime(simpleDateFormat.parse(todoDate));
+                    mTodoate = simpleDateFormat.parse(todoDate);
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
 
 
-                Date mtodoDate= new Date(todoDate);
-                Todo updateTodoItem = new Todo(itemIdUpdate, todoUpdateTitle, todoUpdateDescription, mtodoDate );
+                Todo updateTodoItem = new Todo(itemIdUpdate, todoUpdateTitle, todoUpdateDescription, mTodoate );
 
                 try {
                     updateToDoItemViewModel.UpdateToDoItem(updateTodoItem);

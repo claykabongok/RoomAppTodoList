@@ -18,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
+import android.widget.Toast;
 
 import com.claykab.roomapptodolist.R;
 import com.claykab.roomapptodolist.databinding.FragmentNewTodoItemBinding;
@@ -82,8 +83,10 @@ public class UpdateToDoItemFragment extends Fragment {
                 binding.etUpdateTodoItemTitle.getEditText().setText(todo.getTodoTitle());
                 binding.etUpdateTodoItemDescription.getEditText().setText(todo.getTodoDescription());
                 SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy ", Locale.ENGLISH);
-                //todoViewHolder.tv_item_date.setText(formatter.format(todo.getTodoDate()));
+
                 binding.etUpdateTodoItemDate.getEditText().setText(formatter.format(todo.getTodoDate()));
+                binding.switchTodoCompleted.setChecked(todo.isCompleted());
+
 
 //
 //                binding.etUpdateTodoItemDate.getEditText().setText(String.valueOf(todo.getTodoDate()));
@@ -140,6 +143,7 @@ public class UpdateToDoItemFragment extends Fragment {
                 String todoUpdateTitle=binding.etUpdateTodoItemTitle.getEditText().getText().toString().trim();
                 String todoUpdateDescription=binding.etUpdateTodoItemDescription.getEditText().getText().toString().trim();
                 String todoDate=binding.etUpdateTodoItemDate.getEditText().getText().toString().trim();
+                boolean isCompleted=binding.switchTodoCompleted.isChecked();
 
                 ///
 
@@ -154,7 +158,7 @@ public class UpdateToDoItemFragment extends Fragment {
                 }
 
 
-                Todo updateTodoItem = new Todo(itemIdUpdate, todoUpdateTitle, todoUpdateDescription, mTodoate );
+                Todo updateTodoItem = new Todo(itemIdUpdate, todoUpdateTitle, todoUpdateDescription, mTodoate ,isCompleted);
 
                 try {
                     updateToDoItemViewModel.UpdateToDoItem(updateTodoItem);

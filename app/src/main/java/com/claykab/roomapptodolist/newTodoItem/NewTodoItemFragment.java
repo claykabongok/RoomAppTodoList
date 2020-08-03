@@ -86,8 +86,9 @@ public class NewTodoItemFragment extends Fragment {
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
+//
+                Todo newTodo= new Todo(todoTitle,false,todoDescription,mTodoate);
 
-                Todo newTodo= new Todo(todoTitle,todoDescription,mTodoate);
                 try {
                     viewModelNewItem.AddItemToList(newTodo);
                     Snackbar.make(getActivity().findViewById(R.id.nav_host_fragment),"Item added to the  list.",Snackbar.LENGTH_LONG)

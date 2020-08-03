@@ -128,30 +128,42 @@ tools:context=".updateTodoItem.UpdateToDoItemFragment">
     app:layout_constraintStart_toEndOf="@+id/et_todo_item_date"
     app:layout_constraintTop_toBottomOf="@+id/et_update_todo_item_description" />
 
-<Button
-    android:id="@+id/btn_cancel_update"
-    android:layout_width="0dp"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="8dp"
-    android:layout_marginTop="8dp"
-    android:layout_marginEnd="8dp"
-    android:text="Cancel"
-    app:layout_constraintEnd_toStartOf="@+id/btn_update"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/et_update_todo_item_date" />
+    <Button
+        android:id="@+id/btn_cancel_update"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="Cancel"
+        app:layout_constraintEnd_toStartOf="@+id/btn_update"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/switch_todo_completed" />
 
-<Button
-    android:id="@+id/btn_update"
-    android:layout_width="0dp"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="8dp"
-    android:layout_marginTop="8dp"
-    android:layout_marginEnd="8dp"
-    android:background="@color/colorPrimaryLight"
-    android:text="Update"
-    android:textColor="@android:color/white"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toEndOf="@+id/btn_cancel_update"
-    app:layout_constraintTop_toBottomOf="@+id/et_update_todo_item_date" />
+    <Button
+        android:id="@+id/btn_update"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@color/colorPrimaryLight"
+        android:text="Update"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_cancel_update"
+        app:layout_constraintTop_toBottomOf="@+id/switch_todo_completed" />
+
+    <Switch
+        android:id="@+id/switch_todo_completed"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="Todo Completed"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_update_todo_item_date" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

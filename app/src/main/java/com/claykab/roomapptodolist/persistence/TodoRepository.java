@@ -24,8 +24,8 @@ public class TodoRepository {
     }
 
 
-    public LiveData<List<Todo>> getTodoList(){
-        return todoDao.getTodoList();
+    public LiveData<List<Todo>> getTodoList(boolean todo_completed){
+        return todoDao.getTodoList(todo_completed);
     }
 
 

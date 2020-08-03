@@ -18,6 +18,9 @@
         <action
             android:id="@+id/action_ListFragment_to_updateToDoItemFragment"
             app:destination="@id/updateToDoItemFragment" />
+        <action
+            android:id="@+id/action_ListFragment_to_completedTodoFragment"
+            app:destination="@id/completedTodoFragment" />
     </fragment>
     <fragment
         android:id="@+id/NewItemFragment"
@@ -42,5 +45,17 @@
             android:name="itemId"
             app:argType="long"
             android:defaultValue="0L" />
+    </fragment>
+    <fragment
+        android:id="@+id/completedTodoFragment"
+        android:name="com.claykab.roomapptodolist.completedTodo.CompletedTodoFragment"
+        android:label="fragment_completed_todo"
+        tools:layout="@layout/fragment_completed_todo" >
+        <action
+            android:id="@+id/action_completedTodoFragment_to_NewItemFragment"
+            app:destination="@id/NewItemFragment" />
+        <action
+            android:id="@+id/action_completedTodoFragment_to_updateToDoItemFragment"
+            app:destination="@id/updateToDoItemFragment" />
     </fragment>
 </navigation>

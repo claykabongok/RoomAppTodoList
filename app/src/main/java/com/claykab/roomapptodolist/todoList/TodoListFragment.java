@@ -2,7 +2,6 @@ package com.claykab.roomapptodolist.todoList;
 
 
 
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -14,7 +13,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -22,11 +20,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.claykab.roomapptodolist.R;
+import com.claykab.roomapptodolist.adapter.TodoAdapter;
 import com.claykab.roomapptodolist.databinding.FragmentTodoListBinding;
-import com.claykab.roomapptodolist.persistence.Todo;
 import com.google.android.material.snackbar.Snackbar;
-
-import java.util.List;
 
 public class TodoListFragment extends Fragment {
     private FragmentTodoListBinding binding;
@@ -42,7 +38,7 @@ public class TodoListFragment extends Fragment {
         //view binding
         binding= com.claykab.roomapptodolist.databinding.FragmentTodoListBinding.inflate(inflater, container, false);
         try {
-            getActivity().setTitle("Todo list");
+            getActivity().setTitle("Todo list ");
             setHasOptionsMenu(true);
         } catch (Exception e) {
             e.printStackTrace();
@@ -50,6 +46,7 @@ public class TodoListFragment extends Fragment {
 
 
 
+        binding.fabCompleted.setOnClickListener(v->Navigation.findNavController(v).navigate(R.id.action_ListFragment_to_completedTodoFragment));
         binding.fabAddNewItem.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.action_ListFragment_to_NewItemFragment));
 
 
@@ -68,10 +65,10 @@ public class TodoListFragment extends Fragment {
 
     private void loadTodoItem() {
 
-        todoListViewModel.getTodolist().observe(getViewLifecycleOwner(), todoList -> {
+        todoListViewModel.getTodolist(false).observe(getViewLifecycleOwner(), todoList -> {
                             if (!todoList.isEmpty()) {
                 binding.progressBarTodoList.setVisibility(View.GONE);
-                todoAdapter = new TodoAdapter(getContext(), todoList);
+                todoAdapter = new TodoAdapter(getContext(), todoList,"todolist");
                 binding.recyclerviewTodoList.setAdapter(todoAdapter);
             } else {
                 binding.progressBarTodoList.setVisibility(View.GONE);

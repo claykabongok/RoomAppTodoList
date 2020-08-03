@@ -1,4 +1,4 @@
-package com.claykab.roomapptodolist.todoList;
+package com.claykab.roomapptodolist.adapter;
 
 
 import android.content.Context;
@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.navigation.Navigation;
@@ -24,9 +23,12 @@ import java.util.Locale;
 public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder> {
      private Context context;
      List<Todo> todoList;
-     public TodoAdapter(Context context, List<Todo> todoList) {
+     private String navigationAction;
+
+     public TodoAdapter(Context context, List<Todo> todoList,  String navigationAction) {
           this.context=context;
           this.todoList=todoList;
+          this.navigationAction=navigationAction;
      }
 
 
@@ -119,7 +121,13 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
                  bundle.putLong("itemId", itemId);
                  //navigate to details view
 
-                 Navigation.findNavController(v).navigate(R.id.action_ListFragment_to_updateToDoItemFragment, bundle);
+
+                 if(navigationAction.equals("todolist")){
+                      Navigation.findNavController(v).navigate(R.id.action_ListFragment_to_updateToDoItemFragment, bundle);
+                 }else if(navigationAction.equals("completedtodo")){
+                      Navigation.findNavController(v).navigate(R.id.action_completedTodoFragment_to_updateToDoItemFragment, bundle);
+                 }
+
 
 
             }

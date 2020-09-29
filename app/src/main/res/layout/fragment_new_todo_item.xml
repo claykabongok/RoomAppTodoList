@@ -36,7 +36,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_add_item_description">
+        app:layout_constraintTop_toBottomOf="@+id/tv_add_item_description"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <com.google.android.material.textfield.TextInputEditText
 
@@ -64,7 +65,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_todo_item_title">
+        app:layout_constraintTop_toBottomOf="@+id/et_todo_item_title"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <com.google.android.material.textfield.TextInputEditText
 
@@ -91,7 +93,8 @@
         android:inputType="textAutoComplete"
         app:layout_constraintEnd_toStartOf="@+id/iB_pickDate"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_todo_item_description">
+        app:layout_constraintTop_toBottomOf="@+id/et_todo_item_description"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <com.google.android.material.textfield.TextInputEditText
 
@@ -136,6 +139,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:text="Cancel"
+        android:backgroundTint="@android:color/darker_gray"
         app:layout_constraintEnd_toStartOf="@+id/btn_save"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_todo_item_date" />

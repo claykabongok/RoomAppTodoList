@@ -36,7 +36,8 @@ tools:context=".updateTodoItem.UpdateToDoItemFragment">
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintHorizontal_bias="1.0"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/tv_update_todo_item_description">
+    app:layout_constraintTop_toBottomOf="@+id/tv_update_todo_item_description"
+    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
     <com.google.android.material.textfield.TextInputEditText
 
@@ -64,7 +65,8 @@ tools:context=".updateTodoItem.UpdateToDoItemFragment">
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintHorizontal_bias="1.0"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/et_update_todo_item_title">
+    app:layout_constraintTop_toBottomOf="@+id/et_update_todo_item_title"
+    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
     <com.google.android.material.textfield.TextInputEditText
 
@@ -91,7 +93,8 @@ tools:context=".updateTodoItem.UpdateToDoItemFragment">
     android:inputType="textAutoComplete"
     app:layout_constraintEnd_toStartOf="@+id/iB_pickDate"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/et_update_todo_item_description">
+    app:layout_constraintTop_toBottomOf="@+id/et_update_todo_item_description"
+    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
     <com.google.android.material.textfield.TextInputEditText
 
@@ -136,6 +139,7 @@ tools:context=".updateTodoItem.UpdateToDoItemFragment">
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:text="Cancel"
+        android:backgroundTint="@android:color/darker_gray"
         app:layout_constraintEnd_toStartOf="@+id/btn_update"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/switch_todo_completed" />
@@ -162,6 +166,8 @@ tools:context=".updateTodoItem.UpdateToDoItemFragment">
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:text="Todo Completed"
+
+        android:thumbTint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_update_todo_item_date" />

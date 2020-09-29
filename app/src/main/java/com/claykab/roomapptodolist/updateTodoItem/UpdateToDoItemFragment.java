@@ -70,10 +70,13 @@ public class UpdateToDoItemFragment extends Fragment {
     }
 
     private void Load_updateDetails(){
+
         long itemId=0;
 
         try {
-            itemId=getArguments().getLong("itemId");
+             //item id retrieved using safe args
+            UpdateToDoItemFragmentArgs updateToDoItemFragmentArgs=UpdateToDoItemFragmentArgs.fromBundle(getArguments());
+            itemId=updateToDoItemFragmentArgs.getItemId();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -133,7 +136,10 @@ public class UpdateToDoItemFragment extends Fragment {
                 long itemId=0;
 
                 try {
-                    itemId=getArguments().getLong("itemId");
+
+                    //item id retrieved using safe args
+                    UpdateToDoItemFragmentArgs updateToDoItemFragmentArgs=UpdateToDoItemFragmentArgs.fromBundle(getArguments());
+                    itemId=updateToDoItemFragmentArgs.getItemId();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

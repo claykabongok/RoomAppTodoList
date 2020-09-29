@@ -14,7 +14,9 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.claykab.roomapptodolist.R;
+import com.claykab.roomapptodolist.completedTodo.CompletedTodoFragmentDirections;
 import com.claykab.roomapptodolist.persistence.Todo;
+import com.claykab.roomapptodolist.todoList.TodoListFragmentDirections;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -123,9 +125,28 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
 
 
                  if(navigationAction.equals("todolist")){
-                      Navigation.findNavController(v).navigate(R.id.action_ListFragment_to_updateToDoItemFragment, bundle);
+                      /**
+                       *    //navigate to view picture details from home screen
+                       *
+                       *                 HomeFragmentDirections.ActionNavigationHomeToImageDetailsFragment action
+                       *                         = HomeFragmentDirections.actionNavigationHomeToImageDetailsFragment();
+                       *                 action.setPictureId(pictureId);
+                       *                 Navigation.findNavController(v).navigate(action);
+                       */
+                      //Navigation with safe args
+                      TodoListFragmentDirections.ActionListFragmentToUpdateToDoItemFragment action =
+                              TodoListFragmentDirections.actionListFragmentToUpdateToDoItemFragment();
+                      action.setItemId(itemId);
+                      Navigation.findNavController(v).navigate(action);
+
+                      //Navigation.findNavController(v).navigate(R.id.action_ListFragment_to_updateToDoItemFragment, bundle);
                  }else if(navigationAction.equals("completedtodo")){
-                      Navigation.findNavController(v).navigate(R.id.action_completedTodoFragment_to_updateToDoItemFragment, bundle);
+
+                      CompletedTodoFragmentDirections.ActionCompletedTodoFragmentToUpdateToDoItemFragment actionCompleted=
+                              CompletedTodoFragmentDirections.actionCompletedTodoFragmentToUpdateToDoItemFragment();
+                      actionCompleted.setItemId(itemId);
+                      Navigation.findNavController(v).navigate(actionCompleted);
+                     // Navigation.findNavController(v).navigate(R.id.action_completedTodoFragment_to_updateToDoItemFragment, bundle);
                  }
 
 

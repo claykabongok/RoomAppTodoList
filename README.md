@@ -1,6 +1,6 @@
 # Room App: TodoList
 
-The following application demostrates the use of [Room library](https://developer.android.com/topic/libraries/architecture/room) which is part 
+The following application demonstrate  the use of [Room library](https://developer.android.com/topic/libraries/architecture/room) which is part 
 of [Jetpack](https://developer.android.com/jetpack). 
 According to the [documentation](https://developer.android.com/topic/libraries/architecture/room) "The Room persistence library provides an abstraction layer over SQLite to allow for more robust database 
 access while harnessing the full power of SQLite."
